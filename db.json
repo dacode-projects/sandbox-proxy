@@ -1,0 +1,11 @@
+{
+    "endpoints": {
+        "qopus": "https://qopus-dev.onrender.com/webhook/whatsapp",
+        "h3rb": "https://heron-touched-possum.ngrok-free.app/webhook/whatsapp",
+        "test": "https://heron-touched-possum.ngrok-free.app/webhook/whatsapp"
+    },
+    "numbers": {
+        "573183976491": "qopus",
+        "573022780790": "test"
+    }
+}
