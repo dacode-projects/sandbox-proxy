@@ -6,7 +6,7 @@ const handleRequest = async (req, res) => {
     if (!msg) return res.status(400).send('Invalid message');
 
     const target = await getTarget(msg);
-
+    console.log('target', target);
     if (target) {
         axios.post(target, req.body);
         res.sendStatus(200);
