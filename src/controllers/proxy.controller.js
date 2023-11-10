@@ -40,13 +40,25 @@ const getMessage = (req) => {
             const displayPhoneNumber = value.metadata.display_phone_number;
             const to = { phoneNumberId, displayPhoneNumber };
             const from = messageData.from;
-            const body = this.getBody(messageData);
-            const buttonReply = this.getButtonReply(messageData);
+            const body = getBody(messageData);
+            const buttonReply = getButtonReply(messageData);
             const profileName = contact?.profile?.name;
 
             return { to, from, body, profileName, buttonReply }
         }
     }
+}
+
+const getBody = (messageData) => {
+    return getResponse(messageData).body;
+}
+
+const getResponse = (messageData) => {
+    return messageData[messageData.type] ?? {};
+}
+
+const getButtonReply = (messageData) => {
+    return getResponse(messageData).button_reply;
 }
 
 const verifyWhatsappWebhook = (req, res) => {
