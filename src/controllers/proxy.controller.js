@@ -1,7 +1,7 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
 const DB = require("../config/db");
 
-const handleRequest = async (req, res) => {
+const handleRequest = async (req, res, next) => {
     const msg = getMessage(req);
     if (!msg) return res.status(400).send('Invalid message');
 
@@ -12,7 +12,7 @@ const handleRequest = async (req, res) => {
             target,
             changeOrigin: true,
         });
-        proxy(req, res);
+        proxy(req, res, next);
     } else {
         res.status(400).send('Invalid');
     }
