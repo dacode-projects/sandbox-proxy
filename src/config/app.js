@@ -3,7 +3,7 @@ const { verifyWhatsappWebhook, handleRequest } = require('../controllers/proxy.c
 
 const app = express();
 
-app.set('port', process.env.PORT || 443);
+app.set('port', process.env.PORT || 3000);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

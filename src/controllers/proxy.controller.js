@@ -52,7 +52,7 @@ const getMessage = (req) => {
 const verifyWhatsappWebhook = (req, res) => {
     if (
         req.query['hub.mode'] == 'subscribe' &&
-        req.query['hub.verify_token'] == process.env.META_WHATSAPP_API_TOKEN_VERIFY
+        req.query['hub.verify_token'] == process.env.META_WHATSAPP_API_TOKEN_VERIFY || 'qopus'
     ) {
         return res.send(req.query['hub.challenge']);
     }
