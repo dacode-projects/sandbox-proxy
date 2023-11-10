@@ -1,19 +1,15 @@
-const { createProxyMiddleware } = require("http-proxy-middleware");
+const { default: axios } = require("axios");
 const DB = require("../config/db");
 
-const handleRequest = async (req, res, next) => {
+const handleRequest = async (req, res) => {
     const msg = getMessage(req);
     if (!msg) return res.status(400).send('Invalid message');
 
     const target = await getTarget(msg);
 
-    console.log(target);
     if (target) {
-        const proxy = createProxyMiddleware({
-            target,
-            changeOrigin: true,
-        });
-        proxy(req, res, next);
+        const resp = await axios.post(target, req.body);
+        res.json(resp);
     } else {
         res.status(400).send('Invalid');
     }
