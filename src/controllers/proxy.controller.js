@@ -1,3 +1,4 @@
+const { createProxyMiddleware } = require("http-proxy-middleware");
 const DB = require("../config/db");
 
 const handleRequest = async (req, res) => {
