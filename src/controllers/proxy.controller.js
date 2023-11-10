@@ -8,8 +8,8 @@ const handleRequest = async (req, res) => {
     const target = await getTarget(msg);
 
     if (target) {
-        const resp = await axios.post(target, req.body);
-        res.json(resp);
+        axios.post(target, req.body);
+        res.sendStatus(200);
     } else {
         res.status(400).send('Invalid');
     }
