@@ -18,7 +18,7 @@ const handleRequest = async (req, res) => {
 }
 
 const getTarget = async (msg) => {
-    if (msg && msg.from && DB.numbers[msg.from]) return numbers[msg.from];
+    if (msg && msg.from && DB.numbers[msg.from]) return DB.numbers[msg.from];
     return DB.endpoints.qopus;
 }
 
