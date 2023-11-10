@@ -7,6 +7,7 @@ const handleRequest = async (req, res, next) => {
 
     const target = await getTarget(msg);
 
+    console.log(target);
     if (target) {
         const proxy = createProxyMiddleware({
             target,
