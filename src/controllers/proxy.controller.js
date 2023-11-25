@@ -3,16 +3,21 @@ const DB = require("../config/db");
 
 const handleRequest = async (req, res) => {
     const msg = getMessage(req);
-    if (!msg) return res.status(400).send('Invalid message');
+    if (!msg) return returnBadRequest();
+    if (msg.to.displayPhoneNumber != '15550984712') return returnBadRequest();
 
     const target = await getTarget(msg);
-    console.log('target', target);
+    console.log(msg.from, target);
     if (target) {
         axios.post(target, req.body);
         res.sendStatus(200);
     } else {
-        res.status(400).send('Invalid');
+        return returnBadRequest();
     }
+}
+
+const returnBadRequest = () => {
+    return res.status(400).send('Invalid message');
 }
 
 const getTarget = async (msg) => {
